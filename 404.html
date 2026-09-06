@@ -1,7 +1,6 @@
 <!doctype html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js" data-theme-init>
   <head>
-	<meta name="generator" content="Hugo 0.165.0">
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -32,21 +31,17 @@
 </script>
 <meta name="robots" content="index, follow">
 
-<title>Rules Docs</title>
-<meta name="description" content="Bazel documentation packaging rules">
-<meta property="og:url" content="/">
+<title>404 Page not found | Rules Docs</title>
+<meta name="description" content="">
+<meta property="og:url" content="/404.html">
 	<meta property="og:site_name" content="Rules Docs">
-	<meta property="og:title" content="Rules docs">
-	<meta property="og:description" content="Bazel documentation packaging rules">
+	<meta property="og:title" content="404 Page not found">
 	<meta property="og:locale" content="en">
 	<meta property="og:type" content="website">
 
-	<meta itemprop="name" content="Rules docs">
-	<meta itemprop="description" content="Bazel documentation packaging rules">
-	<meta itemprop="wordCount" content="189">
+	<meta itemprop="name" content="404 Page not found">
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Rules docs">
-	<meta name="twitter:description" content="Bazel documentation packaging rules">
+	<meta name="twitter:title" content="404 Page not found">
 <link rel="preload" href="/scss/main.min.8f0680d136cc9695b0ad0e99d08675b9835bbc1b0b99eda42af2f5baac89c013.css" as="style" integrity="sha256-jwaA0TbMlpWwrQ6Z0IZ1uYNbvBsLme2kKvL1uqyJwBM=" crossorigin="anonymous">
 <link href="/scss/main.min.8f0680d136cc9695b0ad0e99d08675b9835bbc1b0b99eda42af2f5baac89c013.css" rel="stylesheet" integrity="sha256-jwaA0TbMlpWwrQ6Z0IZ1uYNbvBsLme2kKvL1uqyJwBM=" crossorigin="anonymous">
 <script
@@ -55,7 +50,7 @@
   crossorigin="anonymous"></script>
 
   </head>
-  <body class="td-home">
+  <body class="td-404">
     <header>
       <nav class="td-navbar js-navbar-scroll">
 <div class="td-navbar-container container-fluid flex-column flex-md-row">
@@ -132,60 +127,10 @@
     </header>
     <div class="container-fluid td-default td-outer">
       <main role="main" class="td-main">
-        
-<section class="row">
-  <div class="col">
-    <div class="container td-content landing-content">
-      <h1>Rules docs</h1>
-      
-      <p class="lead">Bazel documentation packaging rules</p>
-       
-      <p class="text-body-secondary">Built with bzl.</p>
-       <p><code>rules_docs</code> packages Markdown documentation under a common archive prefix.</p>
-<h2 id="documentation-rule">Documentation rule</h2>
-<p>Add the module dependency:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-starlark" data-lang="starlark"><span style="display:flex;"><span>bazel_dep(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rules_docs&#34;</span>, version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;VERSION&gt;&#34;</span>)
-</span></span></code></pre></div><p>Then declare the package documentation. <code>srcs</code> defaults to
-<code>glob([&quot;*.md&quot;])</code>; <code>visibility</code> is optional.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-starlark" data-lang="starlark"><span style="display:flex;"><span>load(<span style="color:#e6db74">&#34;@rules_docs//docs:defs.bzl&#34;</span>, <span style="color:#e6db74">&#34;docs_filegroup&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>docs_filegroup(
-</span></span><span style="display:flex;"><span>    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;docs&#34;</span>,
-</span></span><span style="display:flex;"><span>    deps <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;child&#34;</span>],
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>Relative dependency names without a colon are normalized to the child
-package&rsquo;s <code>docs</code> target. <code>prefix</code> defaults to the current package beneath
-<code>content/docs/</code>.</p>
-<h2 id="gazelle-extension">Gazelle extension</h2>
-<p>Generation support is packaged separately so consumers of the documentation
-rule do not inherit Gazelle and Go dependencies. Add it as a development-only
-module dependency:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-starlark" data-lang="starlark"><span style="display:flex;"><span>bazel_dep(
-</span></span><span style="display:flex;"><span>    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rules_docs_gazelle&#34;</span>,
-</span></span><span style="display:flex;"><span>    version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;VERSION&gt;&#34;</span>,
-</span></span><span style="display:flex;"><span>    dev_dependency <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>Add the public language target to the repository&rsquo;s custom Gazelle binary:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-starlark" data-lang="starlark"><span style="display:flex;"><span>load(<span style="color:#e6db74">&#34;@gazelle//:def.bzl&#34;</span>, <span style="color:#e6db74">&#34;gazelle_binary&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gazelle_binary(
-</span></span><span style="display:flex;"><span>    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gazelle_binary&#34;</span>,
-</span></span><span style="display:flex;"><span>    languages <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@rules_docs_gazelle//gazelle&#34;</span>,
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>The extension only operates in directories where both a BUILD file and a
-<code>README.md</code> already exist. Newly generated rules use <code>glob([&quot;*.md&quot;])</code> and are
-visible only to their nearest ancestor Bazel package. Existing <code>srcs</code>, <code>deps</code>,
-<code>visibility</code>, and <code>prefix</code> attributes are preserved.</p>
-<p>The public <code>@rules_docs_gazelle//gazelle:gazelle_docs</code> binary contains only
-this extension and can update a nested workspace without initializing
-unrelated language plugins from its parent repository.</p>
-
-    </div>
-  </div>
-</section>
-
+        <div class="td-content">
+  <h1>Not found</h1>
+  <p>Oops! This page doesn't exist. Try going back to the <a href="/">home page</a>.</p>
+</div>
       </main>
       <footer class="td-footer row d-print-none">
   <div class="container-fluid">
