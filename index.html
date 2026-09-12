@@ -43,12 +43,12 @@
 
 	<meta itemprop="name" content="Rules docs">
 	<meta itemprop="description" content="Bazel documentation packaging rules">
-	<meta itemprop="wordCount" content="189">
+	<meta itemprop="wordCount" content="224">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Rules docs">
 	<meta name="twitter:description" content="Bazel documentation packaging rules">
-<link rel="preload" href="/scss/main.min.8f0680d136cc9695b0ad0e99d08675b9835bbc1b0b99eda42af2f5baac89c013.css" as="style" integrity="sha256-jwaA0TbMlpWwrQ6Z0IZ1uYNbvBsLme2kKvL1uqyJwBM=" crossorigin="anonymous">
-<link href="/scss/main.min.8f0680d136cc9695b0ad0e99d08675b9835bbc1b0b99eda42af2f5baac89c013.css" rel="stylesheet" integrity="sha256-jwaA0TbMlpWwrQ6Z0IZ1uYNbvBsLme2kKvL1uqyJwBM=" crossorigin="anonymous">
+<link rel="preload" href="/scss/main.min.d11768aa2cd04726bf250ab48d40566d9e8285cc108aee225a16ece95c51375e.css" as="style" integrity="sha256-0RdoqizQRya/JQq0jUBWbZ6ChcwQiu4iWhbs6VxRN14=" crossorigin="anonymous">
+<link href="/scss/main.min.d11768aa2cd04726bf250ab48d40566d9e8285cc108aee225a16ece95c51375e.css" rel="stylesheet" integrity="sha256-0RdoqizQRya/JQq0jUBWbZ6ChcwQiu4iWhbs6VxRN14=" crossorigin="anonymous">
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -153,6 +153,10 @@
 </span></span></code></pre></div><p>Relative dependency names without a colon are normalized to the child
 package&rsquo;s <code>docs</code> target. <code>prefix</code> defaults to the current package beneath
 <code>content/docs/</code>.</p>
+<p>Files are packaged at their basename by default. When a package&rsquo;s sources span
+subdirectories that hold identically named files, set <code>preserve_paths = True</code>
+so each source keeps its package-relative path and the destinations stay
+distinct.</p>
 <h2 id="gazelle-extension">Gazelle extension</h2>
 <p>Generation support is packaged separately so consumers of the documentation
 rule do not inherit Gazelle and Go dependencies. Add it as a development-only
